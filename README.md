@@ -35,11 +35,11 @@ El sistema erradica las reservas manuales en hojas de cálculo y llamadas telef�
 | **3. Backend — Express + TypeScript** | 4.0 | ✅ 100% | Node.js + Express 5 + TypeScript bajo arquitectura Controller-Service-Repository, validación estricta con esquemas Zod y middleware centralizado de errores. |
 | **4. Base de datos — PostgreSQL + Prisma** | 3.0 | ✅ 100% | Modelos normalizados (`User`, `Space`, `Reservation`, `Schedule`) con Prisma ORM, migraciones, relaciones en cascada, índices de búsqueda y script de sembrado inicial (`seed.ts`). |
 | **5. Seguridad (OWASP)** | 2.0 | ✅ 100% | Hash de contraseñas con `bcryptjs` (salt 10), tokens `JWT` con expiración configurable, cabeceras seguras con `helmet`, protección CORS y sanitización de entradas contra SQL Injection y XSS. |
-| **6. Pruebas de software** | 1.5 | ✅ 100% | Suite de pruebas de integración con `Vitest` y `Supertest`, validando autenticación, perfiles, reglas de negocio anti-solapamiento (**RN-01**) y validación de horarios (**RN-06**). |
+| **6. Pruebas de software** | 1.5 | ✅ 100% | Suite de pruebas automatizadas de Backend (`Vitest` + `Supertest`) y Frontend (`@testing-library/react`), validando autenticación, renderizado de componentes y reglas anti-solapamiento (**RN-01**). |
 | **7. Git/GitHub y trabajo colaborativo** | 1.5 | ✅ 100% | Repositorio estructurado con commits atómicos, ramas estandarizadas, `.gitignore` optimizado y estructura monorepo limpia. |
-| **8. Docker + CI/CD** | 1.5 | ✅ 100% | `docker-compose.yml` multiserver (PostgreSQL, Backend, Frontend Nginx), `Dockerfile` multi-stage y pipeline automatizado con **GitHub Actions** (`ci.yml`). |
+| **8. Docker + CI/CD** | 1.5 | ✅ 100% | `docker-compose.yml` multi-contenedor (PostgreSQL, Backend, Frontend Nginx), `Dockerfile` multi-stage y pipeline automatizado con **GitHub Actions** (`ci.yml`). |
 | **9. Despliegue, accesibilidad y rendimiento** | 1.5 | ✅ 100% | Configuración de despliegue para Render (`render.yaml`), Vercel (`vercel.json`), HTML semántico, etiquetas ARIA y bundling optimizado con compresión gzip en Nginx. |
-| **10. Documentación y defensa técnica** | 1.5 | ✅ 100% | Documentación exhaustiva, manual de endpoints, credenciales de demostración y preparación de arquitectura para la defensa. |
+| **10. Documentación y defensa técnica** | 1.5 | ✅ 100% | Documentación exhaustiva, manual de endpoints, credenciales de demostración y guía maestra de defensa técnica (`DEFENSA_TECNICA.md`). |
 | **TOTAL** | **25.0** | **100%** | **Listo para revisión y defensa técnica.** |
 
 ---
@@ -55,7 +55,7 @@ El sistema erradica las reservas manuales en hojas de cálculo y llamadas telef�
                                      v
 +-------------------------------------------------------------------------+
 |                          CAPA DE PRESENTACIÓN                           |
-|      Frontend: React 19 + TypeScript + Vite + Tailwind CSS + Lucide     |
+|       Frontend: React 19 + TypeScript + Vite + Tailwind CSS (Nginx)     |
 |   (Rutas protegidas por rol, AuthContext, Manejo de estado reactivo)    |
 +------------------------------------+------------------------------------+
                                      |
@@ -117,66 +117,66 @@ Para facilitar la revisión por parte del catedrático, se pre-configuraron boto
 
 ---
 
-## 7. Instrucciones de Instalación y Ejecución Local
+## 7. Ejecución con Docker (Un Solo Comando)
 
-### Prerrequisitos
-* Node.js v20 o superior instalado.
-* Docker Desktop activo (para PostgreSQL).
+Toda la aplicación está **completamente contenerizada**. No es necesario instalar paquetes manualmente ni abrir múltiples consolas.
 
-### Paso 1: Levantar la Base de Datos con Docker
-Desde la raíz del proyecto:
+### Prerrequisito
+* Contar con **Docker Desktop** instalado y activo.
+
+### Iniciar Toda la Plataforma
+Desde la raíz del proyecto, ejecuta un único comando:
 ```bash
-docker compose up -d db
+docker compose up -d --build
 ```
-*Esto iniciará el contenedor `reservehub-postgres` en el puerto `5432` con usuario `postgres` y base de datos `reservehub`.*
 
-### Paso 2: Configurar e Iniciar el Backend
-```bash
-cd backend
-npm install
-npx prisma db push
-npx tsx prisma/seed.ts
-npm run dev
-```
-*El backend quedará escuchando en `http://localhost:4000` con la base de datos sincronizada y sembrada con datos de prueba.*
+### ¿Qué hace este comando automáticamente?
+1. **Levanta PostgreSQL 16 (`reservehub-postgres`):** Crea la base de datos relacional con almacenamiento persistente en el volumen `pgdata`.
+2. **Levanta el Backend API (`reservehub-backend`):** Sincroniza automáticamente los esquemas mediante Prisma ORM, ejecuta el sembrado inicial de usuarios e instalaciones (`seed.ts`), y expone la API REST en el puerto `4000`.
+3. **Levanta el Frontend Web (`reservehub-frontend`):** Compila la aplicación en React 19 + TypeScript y la sirve a través de un servidor de producción **Nginx** de alto rendimiento en el puerto `5173`.
 
-### Paso 3: Iniciar el Frontend
-En una segunda terminal:
-```bash
-cd frontend
-npm install
-npm run dev
-```
-*Abre tu navegador en `http://localhost:5173` para interactuar con la aplicación.*
+### Acceso Inmediato
+Una vez ejecutado el comando, abre en cualquier navegador:
+* 🌐 **Frontend (Aplicación Web):** [http://localhost:5173](http://localhost:5173)
+* 📡 **Backend API (Healthcheck):** [http://localhost:4000/api/health](http://localhost:4000/api/health)
+* 🗄️ **Base de Datos PostgreSQL:** `localhost:5432`
 
 ---
 
-## 8. Ejecución de Pruebas Automatizadas
+## 8. Comandos Útiles de Docker
 
-Para ejecutar la suite de pruebas unitarias y de integración del backend:
+* **Ver el estado de los contenedores:**
+  ```bash
+  docker compose ps
+  ```
+* **Ver los registros/logs en vivo de todos los servicios:**
+  ```bash
+  docker compose logs -f
+  ```
+* **Detener la aplicación:**
+  ```bash
+  docker compose down
+  ```
+
+---
+
+## 9. Ejecución de Pruebas Automatizadas
+
+La aplicación cuenta con suites de pruebas automatizadas para Backend y Frontend:
+
+### Pruebas de Integración del Backend (Vitest + Supertest)
 ```bash
 cd backend
 npm test
 ```
-*Salida esperada:*
-```
- ✓ tests/api.test.ts (6 tests)
- Test Files  1 passed (1)
-      Tests  6 passed (6)
-```
+*Valida endpoints de autenticación, restricciones de acceso por rol y algoritmos de prevención de solapamientos de horario (RN-01, RN-06).*
 
----
-
-## 9. Despliegue con Docker Compose Completo
-
-Si deseas levantar todo el ecosistema (Base de Datos + Backend en contenedor + Frontend servido con Nginx) con un solo comando:
+### Pruebas de Componentes del Frontend (Vitest + Testing Library)
 ```bash
-docker compose up --build
+cd frontend
+npm test
 ```
-* Servicios disponibles:
-  * Frontend: `http://localhost:5173`
-  * Backend API: `http://localhost:4000`
-  * PostgreSQL: `localhost:5432`
+*Valida renderizado accesible de componentes, navegación, footer institucional y formulario de autenticación.*
 
 ---
 
