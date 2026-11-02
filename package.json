@@ -1,0 +1,16 @@
+{
+  "name": "reservehub-monorepo",
+  "version": "1.0.0",
+  "description": "ReserveHub — Sistema Web de Reservas de Espacios (URL Guatemala)",
+  "private": true,
+  "scripts": {
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "cd backend && npm run build && cd ../frontend && npm run build",
+    "test": "cd backend && npm test",
+    "seed": "cd backend && npm run prisma:seed",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down"
+  },
+  "keywords": ["reservehub", "react", "express", "prisma", "postgresql", "docker"]
+}

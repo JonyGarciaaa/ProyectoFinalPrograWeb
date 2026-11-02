@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum SpaceStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+model User {
+  id           String        @id @default(uuid())
+  name         String
+  email        String        @unique
+  password     String
+  role         Role          @default(USER)
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+  reservations Reservation[]
+
+  @@map("users")
+}
+
+model Space {
+  id           String        @id @default(uuid())
+  name         String
+  description  String
+  location     String
+  capacity     Int
+  imageUrl     String?       @map("image_url")
+  status       SpaceStatus   @default(ACTIVE)
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+  reservations Reservation[]
+  schedules    Schedule[]
+
+  @@map("spaces")
+}
+
+model Reservation {
+  id              String            @id @default(uuid())
+  userId          String            @map("user_id")
+  spaceId         String            @map("space_id")
+  reservationDate String            @map("reservation_date") // YYYY-MM-DD
+  startTime       String            @map("start_time")       // HH:mm (e.g. "09:00")
+  endTime         String            @map("end_time")         // HH:mm (e.g. "10:00")
+  status          ReservationStatus @default(CONFIRMED)
+  notes           String?
+  createdAt       DateTime          @default(now()) @map("created_at")
+  updatedAt       DateTime          @updatedAt @map("updated_at")
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  space Space @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+
+  @@index([spaceId, reservationDate])
+  @@index([userId])
+  @@map("reservations")
+}
+
+model Schedule {
+  id          String      @id @default(uuid())
+  spaceId     String      @map("space_id")
+  dayOfWeek   Int         @map("day_of_week") // 0 = Sunday, 1 = Monday ... 6 = Saturday
+  openingTime String      @map("opening_time") // HH:mm (e.g. "08:00")
+  closingTime String      @map("closing_time") // HH:mm (e.g. "18:00")
+  status      SpaceStatus @default(ACTIVE)
+
+  space Space @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+
+  @@map("schedules")
+}

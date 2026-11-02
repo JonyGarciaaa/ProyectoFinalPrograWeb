@@ -1,0 +1,85 @@
+name: ReserveHub CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  backend-checks:
+    name: Backend Lint, Build & Tests
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres123
+          POSTGRES_DB: reservehub_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+          cache-dependency-path: backend/package-lock.json
+
+      - name: Install Backend Dependencies
+        working-directory: ./backend
+        run: npm ci
+
+      - name: Push Prisma Schema to Test DB
+        working-directory: ./backend
+        env:
+          DATABASE_URL: postgresql://postgres:postgres123@localhost:5432/reservehub_test?schema=public
+          JWT_SECRET: test_ci_jwt_secret_key_12345
+        run: |
+          npx prisma db push
+          npx tsx prisma/seed.ts
+
+      - name: Compile Backend TypeScript
+        working-directory: ./backend
+        run: npm run build
+
+      - name: Run Backend Integration & Unit Tests
+        working-directory: ./backend
+        env:
+          DATABASE_URL: postgresql://postgres:postgres123@localhost:5432/reservehub_test?schema=public
+          JWT_SECRET: test_ci_jwt_secret_key_12345
+        run: npm test
+
+  frontend-checks:
+    name: Frontend Build & Typecheck
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install Frontend Dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+      - name: Build Frontend Application
+        working-directory: ./frontend
+        run: npm run build
