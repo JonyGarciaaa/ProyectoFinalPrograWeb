@@ -4,13 +4,16 @@ import bcrypt from 'bcryptjs';
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('🌱 Starting database seed...');
+  console.log('🌱 Starting database seed verification...');
 
-  // Clean existing records
-  await prisma.reservation.deleteMany();
-  await prisma.schedule.deleteMany();
-  await prisma.space.deleteMany();
-  await prisma.user.deleteMany();
+  const adminExists = await prisma.user.findUnique({
+    where: { email: 'admin@reservehub.com' },
+  });
+
+  if (adminExists) {
+    console.log('⚡ Database already seeded. Skipping.');
+    return;
+  }
 
   // Create Users
   const passwordHashAdmin = await bcrypt.hash('Admin123!', 10);
@@ -130,7 +133,6 @@ async function main() {
     const space = await prisma.space.create({ data: s });
     createdSpaces.push(space);
 
-    // Create standard weekday schedules (Monday=1 through Friday=5: 07:00 to 20:00, Saturday=6: 08:00 to 14:00)
     for (let day = 1; day <= 5; day++) {
       await prisma.schedule.create({
         data: {
@@ -156,7 +158,6 @@ async function main() {
   console.log(`✅ ${createdSpaces.length} Spaces and their schedules seeded.`);
 
   // Create Sample Reservations
-  // For today and tomorrow
   const today = new Date().toISOString().split('T')[0];
   const tomorrowDate = new Date();
   tomorrowDate.setDate(tomorrowDate.getDate() + 1);

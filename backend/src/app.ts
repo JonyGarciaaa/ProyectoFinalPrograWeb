@@ -12,7 +12,7 @@ export const createApp = () => {
   app.use(helmet());
   app.use(
     cors({
-      origin: process.env.CLIENT_URL || 'http://localhost:5173',
+      origin: true, // Permite peticiones de Vercel y localhost
       credentials: true,
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
       allowedHeaders: ['Content-Type', 'Authorization'],
@@ -33,8 +33,7 @@ export const createApp = () => {
     res.json({
       status: 'online',
       service: 'ReserveHub API (Backend)',
-      message: 'El servidor backend está funcionando correctamente. Para usar la aplicación web, abre el frontend en tu navegador.',
-      frontendUrl: process.env.CLIENT_URL || 'http://localhost:5173',
+      message: 'El servidor backend está funcionando correctamente. Para usar la aplicación web, abre el frontend.',
       endpoints: {
         health: '/api/health',
         spaces: '/api/spaces',
@@ -51,7 +50,7 @@ export const createApp = () => {
   app.use((_req, res) => {
     res.status(404).json({
       success: false,
-      message: 'Ruta no encontrada en la API de ReserveHub. Verifica la URL o abre el frontend en http://localhost:5173',
+      message: 'Ruta no encontrada en la API de ReserveHub.',
     });
   });
 
