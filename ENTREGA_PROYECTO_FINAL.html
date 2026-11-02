@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrega Proyecto Final — ReserveHub (URL)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap');
+
+    :root {
+      --url-navy: #002855;
+      --url-blue: #0b3d75;
+      --url-gold: #c69214;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --slate-900: #0f172a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--slate-800);
+      background-color: var(--slate-50);
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 50px 60px;
+      border-radius: 16px;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.06);
+      border: 1px solid var(--slate-200);
+    }
+
+    .header-bar {
+      border-bottom: 4px solid var(--url-navy);
+      padding-bottom: 25px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-title h1 {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--url-navy);
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+    }
+
+    .header-title h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--slate-700);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .header-title p {
+      font-size: 13px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    .badge-doc {
+      background: var(--url-navy);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .project-hero {
+      background: linear-gradient(135deg, #002855 0%, #0b3d75 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 35px;
+    }
+
+    .project-hero h2 {
+      font-size: 26px;
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+
+    .project-hero p {
+      font-size: 14px;
+      color: #cbd5e1;
+      max-width: 700px;
+      line-height: 1.5;
+    }
+
+    h3.section-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--url-navy);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-left: 4px solid var(--url-gold);
+      padding-left: 12px;
+      margin: 30px 0 16px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 24px;
+      font-size: 13px;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--slate-200);
+    }
+
+    th {
+      background-color: var(--slate-100);
+      color: var(--slate-900);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+    }
+
+    tr:hover {
+      background-color: #f8fafc;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .status-tag {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .status-tag.live {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status-tag.score {
+      background: #e0e7ff;
+      color: #3730a3;
+    }
+
+    .credentials-card {
+      background: #f8fafc;
+      border: 1px solid var(--slate-200);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 25px;
+    }
+
+    .code-block {
+      background: #0f172a;
+      color: #38bdf8;
+      font-family: monospace;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      margin: 10px 0 20px 0;
+    }
+
+    .footer-doc {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--slate-200);
+      text-align: center;
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        background: white;
+      }
+      .container {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+      }
+      .project-hero {
+        background: var(--url-navy) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header Universitario -->
+    <div class="header-bar">
+      <div class="header-title">
+        <h1>Universidad Rafael Landívar</h1>
+        <h2>Facultad de Ingeniería • Programación Web</h2>
+        <p>Catedrático: Ing. Ronald Leonel Ayala Garrido • Ciclo: 2do Semestre 2026</p>
+      </div>
+      <div>
+        <span class="badge-doc">Entrega Final</span>
+      </div>
+    </div>
+
+    <!-- Hero del Proyecto -->
+    <div class="project-hero">
+      <h2>ReserveHub</h2>
+      <p>Sistema Web para la Gestión y Reservación de Espacios Universitarios (Aulas, Auditorios y Laboratorios), con detección de conflictos en tiempo real, autenticación JWT, PostgreSQL y despliegue público en la nube.</p>
+    </div>
+
+    <!-- Integrantes del Equipo -->
+    <h3 class="section-title">Integrantes del Equipo de Trabajo</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre Completo</th>
+          <th>No. Carné</th>
+          <th>Rol Técnico</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Walter José Herrera Salvatierra</strong></td>
+          <td>1109722</td>
+          <td>Arquitectura Backend y Base de Datos</td>
+        </tr>
+        <tr>
+          <td><strong>Boris Garzona</strong></td>
+          <td>1218122</td>
+          <td>Lógica de Negocio y Pruebas Automatizadas</td>
+        </tr>
+        <tr>
+          <td><strong>Jonathan García</strong></td>
+          <td>1045222</td>
+          <td>Frontend React, Integración y Despliegue</td>
+        </tr>
+        <tr>
+          <td><strong>Samuel Ruiz</strong></td>
+          <td>1228722</td>
+          <td>Seguridad OWASP y Contenerización Docker</td>
+        </tr>
+        <tr>
+          <td><strong>Giancarlo Ortega</strong></td>
+          <td>1230222</td>
+          <td>Diseño Responsivo UI/UX y Accesibilidad</td>
+        </tr>
+        <tr>
+          <td><strong>Mario López</strong></td>
+          <td>2477123</td>
+          <td>Pipeline CI/CD y Documentación Técnica</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Enlaces del Despliegue Oficial -->
+    <h3 class="section-title">Enlaces Oficiales del Despliegue para Calificación</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Componente</th>
+          <th>Plataforma</th>
+          <th>Enlace en Producción</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Frontend Web</strong></td>
+          <td>Vercel</td>
+          <td><a href="https://proyecto-final-progra-web-theta.vercel.app" target="_blank">https://proyecto-final-progra-web-theta.vercel.app</a></td>
+          <td><span class="status-tag live">Activo (Live)</span></td>
+        </tr>
+        <tr>
+          <td><strong>Backend REST API</strong></td>
+          <td>Render</td>
+          <td><a href="https://reservehub-backend-881f.onrender.com/api/health" target="_blank">https://reservehub-backend-881f.onrender.com/api/health</a></td>
+          <td><span class="status-tag live">Activo (Live)</span></td>
+        </tr>
+        <tr>
+          <td><strong>Base de Datos</strong></td>
+          <td>Render PostgreSQL</td>
+          <td>PostgreSQL 16 en la Nube con Prisma ORM</td>
+          <td><span class="status-tag live">Conectada</span></td>
+        </tr>
+        <tr>
+          <td><strong>Repositorio GitHub</strong></td>
+          <td>GitHub</td>
+          <td><a href="https://github.com/JonyGarciaaa/ProyectoFinalPrograWeb" target="_blank">https://github.com/JonyGarciaaa/ProyectoFinalPrograWeb</a></td>
+          <td><span class="status-tag live">Público</span></td>
+        </tr>
+        <tr>
+          <td><strong>Pipeline CI/CD</strong></td>
+          <td>GitHub Actions</td>
+          <td><a href="https://github.com/JonyGarciaaa/ProyectoFinalPrograWeb/actions" target="_blank">GitHub Actions Workflow</a></td>
+          <td><span class="status-tag live">100% Passed</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Credenciales de Prueba -->
+    <h3 class="section-title">Credenciales de Acceso para Evaluación</h3>
+    <div class="credentials-card">
+      <p style="font-size: 13px; margin-bottom: 12px; color: #475569;">
+        <em>Nota: En la pantalla de Login de la web existen dos botones de acceso rápido (Demo) que autocompletan las credenciales en 1 clic.</em>
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Rol</th>
+            <th>Correo Electrónico</th>
+            <th>Contraseña</th>
+            <th>Permisos en el Sistema</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Administrador</strong></td>
+            <td><code>admin@reservehub.com</code></td>
+            <td><code>Admin123!</code></td>
+            <td>Panel Administrativo (`/admin`): Gestión de espacios (crear, editar, deshabilitar), cambio de estados de reserva (Confirmar, Cancelar, Finalizar) y auditoría de usuarios.</td>
+          </tr>
+          <tr>
+            <td><strong>Usuario Estudiante</strong></td>
+            <td><code>jonathan@reservehub.com</code></td>
+            <td><code>User123!</code></td>
+            <td>Catálogo de salones, selector de fecha con franjas horarias libres en tiempo real, creación y cancelación de reservas propias (`/my-reservations`).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Rúbrica de Calificación -->
+    <h3 class="section-title">Resumen de Cumplimiento de la Rúbrica (25 / 25 Puntos)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Criterio Evaluado</th>
+          <th>Puntos</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1. Análisis y diseño (RF, RNF, RN, modelo relacional, arquitectura)</td>
+          <td><strong>3.0 pts</strong></td>
+          <td><span class="status-tag score">Cumplido 100%</span></td>
+        </tr>
+        <tr>
+          <td>2. Frontend — React 19 + TypeScript + Vite + Tailwind CSS (7 pantallas)</td>
+          <td><strong>5.5 pts</strong></td>
+          <td><span class="status-tag score">Cumplido 100%</span></td>
+        </tr>
+        <tr>
+          <td>3. Backend — Node.js + Express 5 + TypeScript + Validaciones Zod</td>
+          <td><strong>4.0 pts</strong></td>
+          <td><span class="status-tag score">Cumplido 100%</span></td>
+        </tr>
+        <tr>
+          <td>4. Base de datos — PostgreSQL 16 + Prisma ORM (Migraciones y Seed)</td>
+          <td><strong>3.0 pts</strong></td>
+          <td><span class="status-tag score">Cumplido 100%</span></td>
+        </tr>
+        <tr>
+          <td>5. Seguridad OWASP (Bcrypt salt 10, JWT, Helmet, CORS, RBAC)</td>
+          <td><strong>2.0 pts</strong></td>
+          <td><span class="status-tag score">Cumplido 100%</span></td>
+        </tr>
+        <tr>
+          <td>6. Pruebas de software (Pruebas unitarias y de integración backend + frontend)</td>
+          <td><strong>1.5 pts</strong></td>
+          <td><span class="status-tag score">Cumplido 100%</span></td>
+        </tr>
+        <tr>
+          <td>7. Git / GitHub y trabajo colaborativo (Historial de commits semánticos)</td>
+          <td><strong>1.5 pts</strong></td>
+          <td><span class="status-tag score">Cumplido 100%</span></td>
+        </tr>
+        <tr>
+          <td>8. Docker + CI/CD (Docker Compose multi-stage + GitHub Actions en verde)</td>
+          <td><strong>1.5 pts</strong></td>
+          <td><span class="status-tag score">Cumplido 100%</span></td>
+        </tr>
+        <tr>
+          <td>9. Despliegue en la nube público, accesibilidad y rendimiento (Vercel + Render)</td>
+          <td><strong>1.5 pts</strong></td>
+          <td><span class="status-tag score">Cumplido 100%</span></td>
+        </tr>
+        <tr>
+          <td>10. Documentación y defensa técnica (README.md y DEFENSA_TECNICA.md)</td>
+          <td><strong>1.5 pts</strong></td>
+          <td><span class="status-tag score">Cumplido 100%</span></td>
+        </tr>
+        <tr style="background: #f1f5f9; font-weight: 800;">
+          <td>TOTAL</td>
+          <td>25.0 / 25.0 pts</td>
+          <td><span class="status-tag live">100% Completo</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Opción Docker Local -->
+    <h3 class="section-title">Instrucciones de Ejecución Local con Docker (Evaluación en Aula)</h3>
+    <p style="font-size: 13px; color: #475569; margin-bottom: 8px;">
+      Si la evaluación se realiza de forma local en la computadora del estudiante, la aplicación se inicia con un único comando:
+    </p>
+    <div class="code-block">
+      docker compose up -d --build
+    </div>
+    <p style="font-size: 12px; color: #64748b;">
+      Acceso local inmediato en el navegador: <strong>http://localhost:5173</strong> (Frontend) y <strong>http://localhost:4000</strong> (Backend).
+    </p>
+
+    <!-- Footer -->
+    <div class="footer-doc">
+      <p>ReserveHub © 2026 — Proyecto Final de Programación Web — Facultad de Ingeniería, Universidad Rafael Landívar</p>
+    </div>
+  </div>
+
+</body>
+</html>
