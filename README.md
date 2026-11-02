@@ -18,6 +18,16 @@
 
 ---
 
+## 🌐 Enlaces Oficiales del Despliegue Público (Producción)
+
+| Componente | Plataforma | Enlace Público en Producción | Repositorio GitHub |
+| :--- | :--- | :--- | :--- |
+| **Frontend Web** | **Vercel** | [https://proyecto-final-progra-web-theta.vercel.app](https://proyecto-final-progra-web-theta.vercel.app) | [GitHub Repository](https://github.com/JonyGarciaaa/ProyectoFinalPrograWeb) |
+| **Backend API** | **Render** | [https://reservehub-backend-881f.onrender.com/api/health](https://reservehub-backend-881f.onrender.com/api/health) | [GitHub Backend Code](https://github.com/JonyGarciaaa/ProyectoFinalPrograWeb/tree/main/backend) |
+| **Base de Datos** | **Render PostgreSQL** | Conectada en la nube con Prisma ORM | [Esquema Prisma](https://github.com/JonyGarciaaa/ProyectoFinalPrograWeb/blob/main/backend/prisma/schema.prisma) |
+
+---
+
 ## 1. Descripción del Proyecto
 
 **ReserveHub** es una aplicación web moderna, accesible, segura y contenerizada diseñada para la gestión y reservación de espacios físicos (aulas de reuniones, salas de conferencias, auditorios y laboratorios de cómputo) dentro del campus universitario.
@@ -38,7 +48,7 @@ El sistema erradica las reservas manuales en hojas de cálculo y llamadas telef�
 | **6. Pruebas de software** | 1.5 | ✅ 100% | Suite de pruebas automatizadas de Backend (`Vitest` + `Supertest`) y Frontend (`@testing-library/react`), validando autenticación, renderizado de componentes y reglas anti-solapamiento (**RN-01**). |
 | **7. Git/GitHub y trabajo colaborativo** | 1.5 | ✅ 100% | Repositorio estructurado con commits atómicos, ramas estandarizadas, `.gitignore` optimizado y estructura monorepo limpia. |
 | **8. Docker + CI/CD** | 1.5 | ✅ 100% | `docker-compose.yml` multi-contenedor (PostgreSQL, Backend, Frontend Nginx), `Dockerfile` multi-stage y pipeline automatizado con **GitHub Actions** (`ci.yml`). |
-| **9. Despliegue, accesibilidad y rendimiento** | 1.5 | ✅ 100% | Configuración de despliegue para Render (`render.yaml`), Vercel (`vercel.json`), HTML semántico, etiquetas ARIA y bundling optimizado con compresión gzip en Nginx. |
+| **9. Despliegue, accesibilidad y rendimiento** | 1.5 | ✅ 100% | Desplegado en vivo en **Vercel** (Frontend) y **Render** (Backend + PostgreSQL), HTML semántico, etiquetas ARIA y bundling optimizado con compresión gzip en Nginx. |
 | **10. Documentación y defensa técnica** | 1.5 | ✅ 100% | Documentación exhaustiva, manual de endpoints, credenciales de demostración y guía maestra de defensa técnica (`DEFENSA_TECNICA.md`). |
 | **TOTAL** | **25.0** | **100%** | **Listo para revisión y defensa técnica.** |
 
@@ -55,14 +65,14 @@ El sistema erradica las reservas manuales en hojas de cálculo y llamadas telef�
                                      v
 +-------------------------------------------------------------------------+
 |                          CAPA DE PRESENTACIÓN                           |
-|       Frontend: React 19 + TypeScript + Vite + Tailwind CSS (Nginx)     |
+|       Frontend: React 19 + TypeScript + Vite + Tailwind CSS (Vercel)    |
 |   (Rutas protegidas por rol, AuthContext, Manejo de estado reactivo)    |
 +------------------------------------+------------------------------------+
                                      |
                                      v
 +-------------------------------------------------------------------------+
 |                           CAPA DE SERVICIOS                             |
-|          Backend: Node.js + Express 5 + TypeScript (API REST)           |
+|          Backend: Node.js + Express 5 + TypeScript en Render            |
 |  - Middlewares: Helmet, CORS, JWT Auth, Role Guard, Zod Validator       |
 |  - Controladores: AuthController, SpaceController, ReservationController|
 |  - Servicios: Lógica de negocio y algoritmo de prevención de conflictos|
@@ -71,7 +81,7 @@ El sistema erradica las reservas manuales en hojas de cálculo y llamadas telef�
                                      v
 +-------------------------------------------------------------------------+
 |                          CAPA DE PERSISTENCIA                           |
-|                      Base de Datos: PostgreSQL 16                       |
+|                  Base de Datos: PostgreSQL 16 en Render                 |
 |   (Tablas: users, spaces, reservations, schedules con índices y UUIDs)  |
 +-------------------------------------------------------------------------+
 ```
@@ -135,8 +145,7 @@ docker compose up -d --build
 2. **Levanta el Backend API (`reservehub-backend`):** Sincroniza automáticamente los esquemas mediante Prisma ORM, ejecuta el sembrado inicial de usuarios e instalaciones (`seed.ts`), y expone la API REST en el puerto `4000`.
 3. **Levanta el Frontend Web (`reservehub-frontend`):** Compila la aplicación en React 19 + TypeScript y la sirve a través de un servidor de producción **Nginx** de alto rendimiento en el puerto `5173`.
 
-### Acceso Inmediato
-Una vez ejecutado el comando, abre en cualquier navegador:
+### Acceso Inmediato Local
 * 🌐 **Frontend (Aplicación Web):** [http://localhost:5173](http://localhost:5173)
 * 📡 **Backend API (Healthcheck):** [http://localhost:4000/api/health](http://localhost:4000/api/health)
 * 🗄️ **Base de Datos PostgreSQL:** `localhost:5432`
