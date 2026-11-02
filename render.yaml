@@ -4,9 +4,11 @@ services:
     env: node
     plan: free
     rootDir: backend
-    buildCommand: npm ci && npx prisma generate && npm run build
-    startCommand: npx prisma db push && npx tsx prisma/seed.ts && node dist/server.js
+    buildCommand: npm install && npx prisma generate && npm run build
+    startCommand: npx prisma db push --skip-generate && npx tsx prisma/seed.ts && node dist/server.js
     envVars:
+      - key: NODE_VERSION
+        value: 22.13.0
       - key: NODE_ENV
         value: production
       - key: PORT
