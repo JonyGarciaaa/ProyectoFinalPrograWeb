@@ -83,3 +83,7 @@ jobs:
       - name: Build Frontend Application
         working-directory: ./frontend
         run: npm run build
+
+      - name: Run Frontend Component Tests
+        working-directory: ./frontend
+        run: npm test
