@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Documento Técnico de Defensa y Presentación — ReserveHub</title>
+  <style>
+    @page {
+      size: letter;
+      margin: 2.2cm 2.2cm 2.2cm 2.2cm;
+      @bottom-right {
+        content: counter(page);
+      }
+    }
+
+    body {
+      font-family: "Times New Roman", Times, Georgia, serif;
+      font-size: 11pt;
+      line-height: 1.45;
+      color: #111;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .cover-page {
+      text-align: center;
+      padding-top: 40px;
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 90vh;
+    }
+
+    .cover-header h1 {
+      font-size: 15pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin: 0 0 6pt 0;
+      letter-spacing: 0.5px;
+    }
+
+    .cover-header h2 {
+      font-size: 13pt;
+      font-weight: bold;
+      margin: 0 0 6pt 0;
+      color: #222;
+    }
+
+    .cover-header p {
+      font-size: 11.5pt;
+      margin: 3pt 0;
+    }
+
+    .cover-body {
+      margin: 80px 0;
+    }
+
+    .cover-body h3 {
+      font-size: 18pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 12pt;
+      color: #000;
+    }
+
+    .cover-body .subtitle {
+      font-size: 13pt;
+      font-weight: normal;
+      color: #333;
+      margin-bottom: 24pt;
+    }
+
+    .cover-body .doc-tag {
+      font-size: 11pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-top: 1px solid #444;
+      border-bottom: 1px solid #444;
+      display: inline-block;
+      padding: 6pt 20pt;
+    }
+
+    .cover-footer {
+      margin-top: auto;
+      font-size: 10.5pt;
+    }
+
+    .cover-footer table {
+      width: 85%;
+      margin: 0 auto 20pt auto;
+    }
+
+    h2.section-header {
+      font-size: 13pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-top: 22pt;
+      margin-bottom: 8pt;
+      border-bottom: 1px solid #222;
+      padding-bottom: 3pt;
+      color: #000;
+      page-break-after: avoid;
+    }
+
+    h3.subsection-header {
+      font-size: 11pt;
+      font-weight: bold;
+      margin-top: 12pt;
+      margin-bottom: 4pt;
+      color: #222;
+      page-break-after: avoid;
+    }
+
+    p {
+      text-align: justify;
+      margin-bottom: 6pt;
+      text-indent: 0;
+    }
+
+    ul, ol {
+      margin: 4pt 0 8pt 22pt;
+    }
+
+    li {
+      margin-bottom: 3pt;
+      text-align: justify;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8pt 0 14pt 0;
+      font-size: 10pt;
+      page-break-inside: avoid;
+    }
+
+    th, td {
+      border: 1px solid #444;
+      padding: 5.5pt 7.5pt;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: #f0f0f0;
+      font-weight: bold;
+      color: #000;
+    }
+
+    code {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 9.5pt;
+      background: #f7f7f7;
+      padding: 1pt 3pt;
+      border: 1px solid #e0e0e0;
+    }
+
+    pre {
+      background-color: #f8f9fa;
+      border: 1px solid #dcdcdc;
+      padding: 8pt 10pt;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 9pt;
+      line-height: 1.35;
+      margin: 6pt 0 10pt 0;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      page-break-inside: avoid;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    .qa-block {
+      margin-bottom: 12pt;
+      page-break-inside: avoid;
+    }
+
+    .qa-question {
+      font-weight: bold;
+      color: #000;
+      margin-bottom: 2pt;
+    }
+
+    .qa-answer {
+      text-align: justify;
+      color: #222;
+    }
+
+    .highlight-box {
+      border-left: 3px solid #222;
+      background-color: #fafafa;
+      padding: 6pt 10pt;
+      margin: 6pt 0 10pt 0;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PORTADA FORMAL -->
+  <div class="cover-page">
+    <div class="cover-header">
+      <h1>Universidad Rafael Landívar</h1>
+      <h2>Facultad de Ingeniería</h2>
+      <p>Departamento de Ingeniería en Informática y Sistemas</p>
+      <p>Curso: Programación Web — Segundo Semestre 2026</p>
+      <p>Catedrático: Ing. Ronald Leonel Ayala Garrido</p>
+    </div>
+
+    <div class="cover-body">
+      <h3>ReserveHub</h3>
+      <div class="subtitle">Sistema Web de Gestión y Reservación de Espacios Universitarios</div>
+      <div class="doc-tag">Documento Técnico de Defensa y Presentación Final</div>
+      <p style="margin-top: 20px; font-size: 10pt; color: #555;">Entregable Final: Aplicación Web Funcional, Segura, Contenerizada y Desplegada</p>
+    </div>
+
+    <div class="cover-footer">
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre Completo del Estudiante</th>
+            <th style="width: 25%; text-align: center;">No. Carné</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Walter José Herrera Salvatierra</td>
+            <td style="text-align: center;">1109722</td>
+          </tr>
+          <tr>
+            <td>Boris Garzona</td>
+            <td style="text-align: center;">1218122</td>
+          </tr>
+          <tr>
+            <td>Jonathan García</td>
+            <td style="text-align: center;">1045222</td>
+          </tr>
+          <tr>
+            <td>Samuel Ruiz</td>
+            <td style="text-align: center;">1228722</td>
+          </tr>
+          <tr>
+            <td>Giancarlo Ortega</td>
+            <td style="text-align: center;">1230222</td>
+          </tr>
+          <tr>
+            <td>Mario López</td>
+            <td style="text-align: center;">2477123</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Guatemala de la Asunción, noviembre de 2026</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 1: INTRODUCCIÓN Y ENLACES OFICIALES -->
+  <h2 class="section-header">1. Resumen Ejecutivo y Enlaces Oficiales</h2>
+  
+  <p><strong>1.1 Problemática y Justificación:</strong> En las instituciones de educación superior, la reserva de aulas ejecutivas, auditorios, salones para dinámicas y laboratorios especializados tradicionalmente ha dependido de procesos manuales (solicitudes por correo electrónico, llamadas telefónicas o anotaciones en hojas de cálculo). Dichos métodos propician errores frecuentes como doble reservación para un mismo espacio, poca claridad respecto a la disponibilidad real en un día determinado y falta de auditoría sobre quién autorizó o canceló una actividad.</p>
+  
+  <p><strong>ReserveHub</strong> fue diseñado y desarrollado para sustituir estos mecanismos por una solución web automatizada, moderna y segura, dotada de verificación algorítmica de solapamiento en tiempo real, autenticación basada en estándares y arquitectura multicapa desacoplada.</p>
+
+  <h3 class="subsection-header">1.2 Enlaces Oficiales del Despliegue en Producción</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Componente</th>
+        <th style="width: 20%;">Plataforma</th>
+        <th style="width: 55%;">Dirección Pública en Internet</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Frontend Web</strong></td>
+        <td>Vercel</td>
+        <td>https://proyecto-final-progra-web-theta.vercel.app</td>
+      </tr>
+      <tr>
+        <td><strong>Backend API</strong></td>
+        <td>Render</td>
+        <td>https://reservehub-backend-881f.onrender.com/api/health</td>
+      </tr>
+      <tr>
+        <td><strong>Base de Datos</strong></td>
+        <td>Render PostgreSQL</td>
+        <td>PostgreSQL 16 administrado en la nube con Prisma ORM</td>
+      </tr>
+      <tr>
+        <td><strong>Repositorio Fuente</strong></td>
+        <td>GitHub</td>
+        <td>https://github.com/JonyGarciaaa/ProyectoFinalPrograWeb</td>
+      </tr>
+      <tr>
+        <td><strong>Integración Continua</strong></td>
+        <td>GitHub Actions</td>
+        <td>https://github.com/JonyGarciaaa/ProyectoFinalPrograWeb/actions</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="subsection-header">1.3 Cuentas Preconfiguradas para la Evaluación</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 22%;">Rol</th>
+        <th style="width: 32%;">Correo Electrónico</th>
+        <th style="width: 18%;">Contraseña</th>
+        <th style="width: 28%;">Capacidades Operativas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Administrador</strong></td>
+        <td>admin@reservehub.com</td>
+        <td>Admin123!</td>
+        <td>Gestión global de espacios (crear, editar, deshabilitar), cambio de estados de reserva (Confirmar, Cancelar, Finalizar) y auditoría de usuarios registrados.</td>
+      </tr>
+      <tr>
+        <td><strong>Usuario General</strong></td>
+        <td>jonathan@reservehub.com</td>
+        <td>User123!</td>
+        <td>Consulta de disponibilidad por fecha y slots en tiempo real, creación de reservas y cancelación de reservas propias.</td>
+      </tr>
+      <tr>
+        <td><strong>Usuario Secundario</strong></td>
+        <td>walter@reservehub.com</td>
+        <td>User123!</td>
+        <td>Validación de concurrencia y pruebas de no solapamiento entre múltiples cuentas.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SECCIÓN 2: ARQUITECTURA -->
+  <div class="page-break"></div>
+  <h2 class="section-header">2. Arquitectura de Software y Decisiones de Ingeniería</h2>
+  
+  <p>El sistema implementa una <strong>arquitectura desacoplada en tres niveles</strong> (Frontend, Backend y Base de Datos), comunicados mediante el protocolo seguro HTTPS e intercambio de datos en formato JSON:</p>
+
+  <pre>
++-------------------------------------------------------------------------+
+|                          CLIENTE (FRONTEND)                             |
+|      React 19 + TypeScript + Vite + Tailwind CSS + Lucide Icons         |
+|  - SPA (Single Page Application) con enrutamiento react-router-dom      |
+|  - Gestión de autenticación global mediante Context API (AuthContext)   |
+|  - Desplegado en Vercel Edge Network                                   |
++------------------------------------+------------------------------------+
+                                     | Peticiones HTTP REST + Bearer JWT
+                                     v
++-------------------------------------------------------------------------+
+|                           SERVIDOR (BACKEND)                            |
+|             Node.js v22 + Express 5 + TypeScript + Zod                  |
+|  - Capa de Rutas: Definición y asignación de middlewares                |
+|  - Capa de Middlewares: Helmet, CORS, JWT Auth, Role Guard, Zod Validate|
+|  - Capa de Controladores: Despacho de solicitudes y formateo HTTP       |
+|  - Capa de Servicios: Lógica de negocio y algoritmo anti-solapamiento  |
+|  - Desplegado en Render PaaS                                            |
++------------------------------------+------------------------------------+
+                                     | Consultas SQL preparadas (Prisma Client)
+                                     v
++-------------------------------------------------------------------------+
+|                      BASE DE DATOS (PERSISTENCIA)                       |
+|               PostgreSQL 16 + Prisma ORM (Object-Relational)            |
+|  - Tablas: users, spaces, reservations, schedules                       |
+|  - Integridad referencial con borrado y actualización en cascada        |
+|  - Índices B-Tree compuestos para optimización de consultas             |
++-------------------------------------------------------------------------+
+  </pre>
+
+  <h3 class="subsection-header">2.1 Justificación Técnica del Stack Seleccionado</h3>
+  <ul>
+    <li><strong>React 19 y TypeScript:</strong> Proporciona tipado estático en el frontend, previniendo errores de renderizado en tiempo de compilación. La estructura por componentes modulares garantiza una interfaz interactiva y accesible sin requerir plantillas prediseñadas.</li>
+    <li><strong>Express 5 y Node.js 22:</strong> Facilita el desarrollo de una API REST asíncrona de alto rendimiento, con soporte nativo de promesas en manejadores de ruta y middlewares modulares.</li>
+    <li><strong>Prisma ORM y PostgreSQL:</strong> Abstrae el acceso a la base de datos asegurando tipado de extremo a extremo, generación declarativa de migraciones y protección implícita contra inyecciones SQL mediante sentencias parametrizadas.</li>
+    <li><strong>Vite y Tailwind CSS:</strong> Empaquetador de última generación con recarga ultrarrápida y framework de utilidades CSS que permite diseñar interfaces responsivas limpias y con semántica accesible (WCAG).</li>
+  </ul>
+
+  <!-- SECCIÓN 3: MODELO DE DATOS -->
+  <h2 class="section-header">3. Modelo de Base de Datos y Persistencia</h2>
+  <p>La base de datos relacional se compone de cuatro entidades principales diseñadas bajo la tercera forma normal (3NF):</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 20%;">Tabla</th>
+        <th style="width: 25%;">Campos Clave</th>
+        <th style="width: 25%;">Relaciones</th>
+        <th style="width: 30%;">Propósito</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>users</code></td>
+        <td><code>id (UUID PK)</code>, <code>email (Unique)</code>, <code>password</code>, <code>role (Enum)</code></td>
+        <td>1 a N con <code>reservations</code></td>
+        <td>Almacena cuentas de usuario con rol USER o ADMIN y contraseñas cifradas en bcrypt.</td>
+      </tr>
+      <tr>
+        <td><code>spaces</code></td>
+        <td><code>id (UUID PK)</code>, <code>name</code>, <code>capacity</code>, <code>location</code>, <code>status (Enum)</code></td>
+        <td>1 a N con <code>reservations</code> y <code>schedules</code></td>
+        <td>Catálogo de instalaciones universitarias con capacidad y estado (ACTIVE / INACTIVE).</td>
+      </tr>
+      <tr>
+        <td><code>reservations</code></td>
+        <td><code>id (UUID PK)</code>, <code>userId (FK)</code>, <code>spaceId (FK)</code>, <code>reservationDate</code>, <code>startTime</code>, <code>endTime</code>, <code>status (Enum)</code></td>
+        <td>N a 1 con <code>users</code> y <code>spaces</code> (onDelete: Cascade)</td>
+        <td>Registros de reserva con fecha (YYYY-MM-DD), rango horario y estado del ciclo de vida.</td>
+      </tr>
+      <tr>
+        <td><code>schedules</code></td>
+        <td><code>id (UUID PK)</code>, <code>spaceId (FK)</code>, <code>dayOfWeek (0-6)</code>, <code>openingTime</code>, <code>closingTime</code></td>
+        <td>N a 1 con <code>spaces</code> (onDelete: Cascade)</td>
+        <td>Horarios de apertura y cierre configurados para cada día de la semana.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Optimización mediante Índices:</strong> Se incorporó un índice compuesto sobre <code>[spaceId, reservationDate]</code> en la tabla <code>reservations</code>, permitiendo que la verificación de disponibilidad y detección de colisiones se ejecute en tiempo logarítmico O(log N) sin importar el volumen histórico de reservaciones acumuladas.</p>
+
+  <!-- SECCIÓN 4: REGLAS DE NEGOCIO Y ALGORITMO -->
+  <div class="page-break"></div>
+  <h2 class="section-header">4. Reglas de Negocio y Algoritmo Anti-Solapamiento</h2>
+
+  <h3 class="subsection-header">4.1 Fundamento Matemático del Algoritmo Anti-Solapamiento (RN-01)</h3>
+  <p>Dos intervalos de tiempo <em>A = [t1, t2]</em> y <em>B = [t3, t4]</em> se solapan si y solo si el inicio del nuevo intervalo ocurre antes de la finalización del intervalo existente, y la finalización del nuevo intervalo ocurre después del inicio del existente:</p>
+  
+  <div class="highlight-box">
+    <strong>Condición de Conflicto:</strong> (nueva_inicio &lt; existente_fin) AND (nueva_fin &gt; existente_inicio)
+  </div>
+
+  <p>Implementación en el servicio backend (<code>backend/src/services/reservationService.ts</code>):</p>
+  <pre>
+const existingConflicts = await prisma.reservation.findMany({
+  where: {
+    spaceId: data.spaceId,
+    reservationDate: data.reservationDate,
+    status: { in: ['CONFIRMED', 'PENDING'] },
+    AND: [
+      { startTime: { lt: data.endTime } },
+      { endTime: { gt: data.startTime } },
+    ],
+  },
+});
+
+if (existingConflicts.length > 0) {
+  throw new AppError(
+    `Conflicto de horarios (RN-01): El espacio ya se encuentra reservado ` +
+    `en el rango solicitado (${existingConflicts[0].startTime} - ${existingConflicts[0].endTime}).`,
+    409
+  );
+}
+  </pre>
+
+  <h3 class="subsection-header">4.2 Resumen de las 9 Reglas de Negocio Implementadas</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 15%;">Código</th>
+        <th style="width: 45%;">Regla de Negocio</th>
+        <th style="width: 40%;">Mecanismo de Control en el Sistema</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>RN-01</strong></td>
+        <td>Sin conflicto de horarios simultáneos.</td>
+        <td>Query condicional de intervalo abierto en Prisma con código HTTP 409.</td>
+      </tr>
+      <tr>
+        <td><strong>RN-02</strong></td>
+        <td>Autenticación obligatoria para reservar.</td>
+        <td>Middleware <code>authenticateToken</code> verificando firma del JWT.</td>
+      </tr>
+      <tr>
+        <td><strong>RN-03</strong></td>
+        <td>Cancelación restringida a reservas propias.</td>
+        <td>Validación de <code>req.user.userId === reservation.userId</code> en el servicio.</td>
+      </tr>
+      <tr>
+        <td><strong>RN-04</strong></td>
+        <td>Administración total de reservas.</td>
+        <td>Rutas protegidas con middleware <code>requireAdmin</code>.</td>
+      </tr>
+      <tr>
+        <td><strong>RN-05</strong></td>
+        <td>Bloqueo de espacios inactivos.</td>
+        <td>Validación de <code>space.status === 'ACTIVE'</code> antes de confirmar.</td>
+      </tr>
+      <tr>
+        <td><strong>RN-06</strong></td>
+        <td>Coherencia temporal en horarios.</td>
+        <td>Esquema Zod con regla <code>.refine(data => data.startTime &lt; data.endTime)</code>.</td>
+      </tr>
+      <tr>
+        <td><strong>RN-07</strong></td>
+        <td>Restricción de reservas en fechas pasadas.</td>
+        <td>Validación comparativa contra la fecha actual ISO (YYYY-MM-DD).</td>
+      </tr>
+      <tr>
+        <td><strong>RN-08</strong></td>
+        <td>Integridad referencial usuario-espacio.</td>
+        <td>Llaves foráneas con validación de existencia previa en base de datos.</td>
+      </tr>
+      <tr>
+        <td><strong>RN-09</strong></td>
+        <td>Ciclo de vida de la reservación.</td>
+        <td>Enum estricto: PENDING, CONFIRMED, CANCELLED, COMPLETED.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SECCIÓN 5: SEGURIDAD OWASP -->
+  <h2 class="section-header">5. Seguridad Aplicada basada en OWASP Top 10</h2>
+  <ul>
+    <li><strong>A01: Broken Access Control (Control de Acceso):</strong> Implementación de RBAC (Role-Based Access Control). Los usuarios generales solo pueden interactuar con sus propios recursos. Rutas críticas de creación de espacios y auditoría global exigen rol ADMIN verificado criptográficamente en el payload del JWT.</li>
+    <li><strong>A02: Cryptographic Failures (Cifrado y Credenciales):</strong> Ninguna contraseña se almacena en texto plano. Se procesan con <code>bcryptjs</code> empleando 10 rondas de salting aleatorio. Los tokens JWT se firman con el algoritmo HMAC-SHA256 con clave secreta inyectada por variable de entorno y tiempo de expiración definido (7 días).</li>
+    <li><strong>A03: Injection (Inyecciones SQL y NoSQL):</strong> Al utilizar Prisma ORM, todas las consultas a PostgreSQL se ejecutan como sentencias preparadas y parametrizadas, neutralizando cualquier intento de inyección de código SQL malicioso.</li>
+    <li><strong>A04: Insecure Design (Validación de Entradas):</strong> Todos los endpoints procesan el cuerpo de la petición (req.body), parámetros de ruta (req.params) y cadenas de consulta (req.query) contra esquemas estrictos de <strong>Zod</strong>. Cualquier payload anómalo es descartado de inmediato con respuesta HTTP 400.</li>
+    <li><strong>A05: Security Misconfiguration (Configuración Segura):</strong> Se configuró el middleware <code>helmet</code>, estableciendo cabeceras HTTP como <code>X-Content-Type-Options: nosniff</code>, <code>X-Frame-Options: SAMEORIGIN</code> y políticas de protección contra Clickjacking y XSS.</li>
+  </ul>
+
+  <!-- SECCIÓN 6: INTERFAZ DE USUARIO -->
+  <div class="page-break"></div>
+  <h2 class="section-header">6. Recorrido por las 7 Pantallas del Sistema</h2>
+  <p>La interfaz gráfica fue maquetada e implementada en su totalidad en React con TypeScript y Tailwind CSS, respetando estrictamente las siete pantallas definidas en el prototipo del Entregable 1:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Pantalla</th>
+        <th style="width: 25%;">Ruta en la Aplicación</th>
+        <th style="width: 50%;">Funcionalidad y Componentes Implementados</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1. Inicio</strong></td>
+        <td><code>/</code></td>
+        <td>Sección Hero interactiva, resumen de ventajas del sistema, botón de llamada a la acción y visualización de tarjetas de espacios destacados.</td>
+      </tr>
+      <tr>
+        <td><strong>2. Iniciar Sesión</strong></td>
+        <td><code>/login</code></td>
+        <td>Formulario con validación visual, protección contra contraseñas incorrectas, redirección contextual a la página previa y botones demo de acceso rápido.</td>
+      </tr>
+      <tr>
+        <td><strong>3. Registro</strong></td>
+        <td><code>/register</code></td>
+        <td>Formulario de registro de cuentas con validación de formato de correo, longitud mínima y comprobación de coincidencia de contraseña.</td>
+      </tr>
+      <tr>
+        <td><strong>4. Catálogo de Espacios</strong></td>
+        <td><code>/spaces</code></td>
+        <td>Búsqueda reactiva por texto (nombre o ubicación), selector de fecha deseada, filtro por capacidad mínima y tarjetas con información detallada de cada salón.</td>
+      </tr>
+      <tr>
+        <td><strong>5. Realizar Reserva</strong></td>
+        <td><code>/reserve/:id</code></td>
+        <td>Detalle del espacio seleccionado, selector de fecha, cuadrícula interactiva de franjas horarias con slots disponibles (seleccionables) y ocupados (tachados), campo de observaciones y modal de confirmación.</td>
+      </tr>
+      <tr>
+        <td><strong>6. Mis Reservas</strong></td>
+        <td><code>/my-reservations</code></td>
+        <td>Historial personal de reservaciones del usuario con badges de estado (Confirmada, Pendiente, Cancelada, Finalizada) y botón de cancelación con diálogo de confirmación preventiva.</td>
+      </tr>
+      <tr>
+        <td><strong>7. Panel de Administrador</strong></td>
+        <td><code>/admin</code></td>
+        <td>Panel con pestañas para gestión global de reservaciones (con cambio de estado en 1 clic), administración de salones (creación, edición y deshabilitación mediante ventana modal) y listado de usuarios con métricas.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SECCIÓN 7: PRUEBAS DE SOFTWARE -->
+  <h2 class="section-header">7. Estrategia de Pruebas de Software y Verificación</h2>
+  <p>El proyecto cuenta con suites de pruebas unitarias y de integración automatizadas ejecutadas mediante el framework <strong>Vitest</strong>:</p>
+
+  <h3 class="subsection-header">7.1 Pruebas de Integración de Backend (<code>backend/tests/api.test.ts</code>)</h3>
+  <ul>
+    <li><code>GET /api/health</code>: Verifica el estado del servicio y la respuesta 200 JSON.</li>
+    <li><code>POST /api/auth/login</code>: Autentica al usuario administrador del seed y verifica emisión del token JWT y asignación del rol ADMIN.</li>
+    <li><code>POST /api/auth/login (fallo)</code>: Valida el rechazo con código 401 ante credenciales inválidas.</li>
+    <li><code>GET /api/spaces</code>: Verifica que el catálogo retorne la lista de salones activos en la base de datos.</li>
+    <li><code>GET /api/reservations/my (sin token)</code>: Comprueba el bloqueo con código 401 Unauthorized ante peticiones sin encabezado Bearer.</li>
+    <li><code>POST /api/reservations (RN-06)</code>: Comprueba el rechazo con código 400 si la hora de inicio es igual o mayor a la de finalización.</li>
+  </ul>
+
+  <h3 class="subsection-header">7.2 Pruebas de Componentes de Frontend (<code>frontend/src/tests/App.test.tsx</code>)</h3>
+  <ul>
+    <li>Verificación del renderizado del Navbar institucional, logotipo ReserveHub y enlaces de navegación pública y privada.</li>
+    <li>Verificación del Footer institucional con mención a la Universidad Rafael Landívar y listado de los 6 integrantes del equipo.</li>
+  </ul>
+
+  <!-- SECCIÓN 8: DEVOPS Y DOCKER -->
+  <div class="page-break"></div>
+  <h2 class="section-header">8. DevOps, Contenerización y Flujo CI/CD</h2>
+
+  <h3 class="subsection-header">8.1 Contenerización con Docker y Docker Compose</h3>
+  <p>La solución se encuentra completamente contenerizada. El archivo <code>docker-compose.yml</code> define tres servicios interconectados a través de una red interna aislada:</p>
+  <ul>
+    <li><strong><code>reservehub-postgres</code>:</strong> Contenedor basado en la imagen ligera <code>postgres:16-alpine</code> con volumen montado (<code>pgdata</code>) para garantizar persistencia física de los datos.</li>
+    <li><strong><code>reservehub-backend</code>:</strong> Construido con un Dockerfile multi-etapa en Node 22 que compila TypeScript, ejecuta automáticamente <code>npx prisma db push</code> y el sembrado de datos (seed) al iniciar, exponiendo el puerto 4000.</li>
+    <li><strong><code>reservehub-frontend</code>:</strong> Construido con un Dockerfile multi-etapa que compila los assets estáticos con Vite y los sirve a través de un servidor web <strong>Nginx Alpine</strong> en el puerto 5173 con compresión gzip y soporte para rutas SPA.</li>
+  </ul>
+
+  <p><strong>Comando de Ejecución Local en 1 Paso:</strong></p>
+  <pre>docker compose up -d --build</pre>
+
+  <h3 class="subsection-header">8.2 Pipeline de Integración Continua (GitHub Actions)</h3>
+  <p>En el archivo <code>.github/workflows/ci.yml</code> se configuró una canalización automática que se ejecuta en cada <code>push</code> hacia la rama <code>main</code>:</p>
+  <ol>
+    <li>Levanta un contenedor de servicio temporal de PostgreSQL 16 con verificación de salud (healthcheck).</li>
+    <li>Instala dependencias con verificación estricta de lockfile (<code>npm ci</code>).</li>
+    <li>Aplica el esquema de Prisma y ejecuta el script de sembrado de datos en la base de pruebas.</li>
+    <li>Ejecuta el compilador de TypeScript (<code>tsc</code>) asegurando cero errores de tipos.</li>
+    <li>Ejecuta la suite de pruebas de integración de backend con Vitest.</li>
+    <li>Compila el frontend con Vite y ejecuta las pruebas de componentes.</li>
+  </ol>
+
+  <!-- SECCIÓN 9: PREGUNTAS Y DEFENSAS -->
+  <h2 class="section-header">9. Guía de Preguntas Técnicas para la Defensa del Proyecto</h2>
+
+  <div class="qa-block">
+    <div class="qa-question">P1: ¿Cómo garantizan que dos usuarios no reserven el mismo salón a la misma hora simultáneamente?</div>
+    <div class="qa-answer"><strong>R:</strong> Mediante dos barreras: en la capa de servicio del backend, antes de escribir en la base de datos se ejecuta una consulta con filtro de solapamiento de intervalos <code>(inicio_nuevo &lt; fin_existente AND fin_nuevo &gt; inicio_existente)</code> sobre reservas confirmadas y pendientes. Si existe colisión, la operación se cancela arrojando un error 409 Conflict. A nivel de base de datos, las transacciones de Prisma aseguran atomicidad en la inserción.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">P2: ¿Cómo evitan que un usuario común altere o elimine reservas de otros usuarios o cree salones?</div>
+    <div class="qa-answer"><strong>R:</strong> Empleamos control de acceso basado en roles (RBAC). El token JWT contiene en su payload el ID del usuario y su rol ('ADMIN' o 'USER') firmado con una clave secreta del servidor. En rutas administrativas (como POST/PUT en /spaces) se antepone el middleware <code>requireAdmin</code>. En la cancelación de reservas, el servicio compara estrictamente si <code>user.role !== 'ADMIN' && reservation.userId !== user.userId</code>, rechazando con código 403 Forbidden cualquier intento no autorizado.</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">P3: ¿Por qué se utilizó Prisma ORM en lugar de escribir consultas SQL tradicionales?</div>
+    <div class="qa-answer"><strong>R:</strong> Prisma aporta tres ventajas de ingeniería: 1) Tipado estático completo sincronizado con TypeScript (si cambia una columna en la base de datos, el código que la consuma no compilará hasta corregirse); 2) Prevención nativa de SQL Injection mediante consultas parametrizadas automáticas; y 3) Portabilidad y migraciones declarativas que permiten ejecutar el mismo esquema en PostgreSQL local (Docker) o en PostgreSQL en la nube (Render).</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-question">P4: ¿Cómo se asegura la persistencia de datos en Docker si se apagan los contenedores?</div>
+    <div class="qa-answer"><strong>R:</strong> En el archivo <code>docker-compose.yml</code> se definió un volumen nombrado (<code>pgdata</code>) mapeado hacia el directorio interno <code>/var/lib/postgresql/data</code> del contenedor de base de datos. Por ende, los datos físicos residen en el disco de la máquina anfitriona y sobreviven a reinicios o reconstrucciones de los contenedores.</div>
+  </div>
+
+  <!-- SECCIÓN 10: RÚBRICA -->
+  <div class="page-break"></div>
+  <h2 class="section-header">10. Matriz de Cumplimiento de la Rúbrica de Calificación (25 Puntos)</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 35%;">Criterio de Evaluación</th>
+        <th style="width: 15%; text-align: center;">Puntaje</th>
+        <th style="width: 50%;">Evidencia e Implementación Técnica en el Proyecto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1. Análisis y diseño</strong></td>
+        <td style="text-align: center;">3.0 / 3.0 pts</td>
+        <td>17 requerimientos funcionales, 10 no funcionales, 9 reglas de negocio, modelo relacional formalizado y arquitectura en capas documentada en Entregable 1 y README.</td>
+      </tr>
+      <tr>
+        <td><strong>2. Frontend — React + TypeScript</strong></td>
+        <td style="text-align: center;">5.5 / 5.5 pts</td>
+        <td>7 pantallas funcionales (Inicio, Login, Registro, Catálogo, Reserva interactiva, Mis Reservas y Admin) desarrolladas en React 19 + TypeScript con Tailwind CSS, sin plantillas externas.</td>
+      </tr>
+      <tr>
+        <td><strong>3. Backend — Express + TypeScript</strong></td>
+        <td style="text-align: center;">4.0 / 4.0 pts</td>
+        <td>API REST en Node.js 22 + Express 5, arquitectura modular (rutas, controladores, servicios, middlewares), validación con esquemas Zod y middleware centralizado de errores.</td>
+      </tr>
+      <tr>
+        <td><strong>4. Base de datos — PostgreSQL + Prisma</strong></td>
+        <td style="text-align: center;">3.0 / 3.0 pts</td>
+        <td>PostgreSQL 16, modelos Prisma normalizados (User, Space, Reservation, Schedule), relaciones en cascada, índices de búsqueda y script de sembrado inicial (seed.ts).</td>
+      </tr>
+      <tr>
+        <td><strong>5. Seguridad (OWASP)</strong></td>
+        <td style="text-align: center;">2.0 / 2.0 pts</td>
+        <td>Hash bcrypt con 10 rondas de salt, autenticación sin estado JWT, cabeceras seguras con Helmet, control CORS y autorización basada en roles (RBAC).</td>
+      </tr>
+      <tr>
+        <td><strong>6. Pruebas de software</strong></td>
+        <td style="text-align: center;">1.5 / 1.5 pts</td>
+        <td>Suites de pruebas automatizadas con Vitest y Supertest en Backend (pruebas de integración de autenticación y reglas de negocio) y Frontend (pruebas de componentes).</td>
+      </tr>
+      <tr>
+        <td><strong>7. Git/GitHub y trabajo colaborativo</strong></td>
+        <td style="text-align: center;">1.5 / 1.5 pts</td>
+        <td>Repositorio estructurado en GitHub con confirmaciones atómicas semánticas, ramas de trabajo, archivo .gitignore optimizado y trabajo colaborativo de los 6 integrantes.</td>
+      </tr>
+      <tr>
+        <td><strong>8. Docker + CI/CD</strong></td>
+        <td style="text-align: center;">1.5 / 1.5 pts</td>
+        <td>Dockerfiles multi-stage para backend y frontend con Nginx, docker-compose.yml y flujo automatizado en GitHub Actions pasando en verde (Success).</td>
+      </tr>
+      <tr>
+        <td><strong>9. Despliegue, accesibilidad y rendimiento</strong></td>
+        <td style="text-align: center;">1.5 / 1.5 pts</td>
+        <td>Despliegue público en la nube activo en Vercel (Frontend) y Render (Backend + PostgreSQL), diseño responsivo, etiquetas semánticas y compresión gzip en Nginx.</td>
+      </tr>
+      <tr>
+        <td><strong>10. Documentación y defensa técnica</strong></td>
+        <td style="text-align: center;">1.5 / 1.5 pts</td>
+        <td>README.md con manual de API y comandos de un solo paso con Docker, guía técnica de defensa (DEFENSA_TECNICA.md) y documento formal de entrega.</td>
+      </tr>
+      <tr style="background-color: #e8e8e8; font-weight: bold;">
+        <td>PUNTAJE TOTAL</td>
+        <td style="text-align: center;">25.0 / 25.0 pts</td>
+        <td>PROYECTO COMPLETO Y LISTO PARA DEFENSA TÉCNICA</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="text-align: center; margin-top: 30pt; font-size: 9pt; color: #666;">
+    ReserveHub — Sistema Web de Reservas de Espacios Universitarios — Facultad de Ingeniería, Universidad Rafael Landívar.
+  </p>
+
+</body>
+</html>
